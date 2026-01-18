@@ -1,0 +1,17 @@
+{
+  "name": "custom-promise-library",
+  "version": "0.1.0",
+  "description": "A small TypeScript implementation of a Promise-like class (MyPromise).",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest",
+    "start": "npm run build && node dist/example.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "license": "MIT"
+}
