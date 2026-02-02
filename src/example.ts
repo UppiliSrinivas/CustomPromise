@@ -1,11 +1,11 @@
-import debounce from "./debounce";
-import throttle from "./thottle";
+import debounce from "./features/debounce";
+import throttle from "./features/thottle";
 
 const log = (_signal: AbortSignal, msg: string) => {
   console.log(`${msg}`);
 };
 
-/* // Debounce: leading: false, trailing: true (DEFAULT)
+// Debounce: leading: false, trailing: true (DEFAULT)
 const d1 = debounce(log, 1000, {
   leading: false,
   trailing: true,
@@ -21,10 +21,10 @@ const d2 = debounce(log, 1000, {
   trailing: false,
 });
 
-d2("A");
-d2("B");
-d2("C");
-
+d2("Leading TRUE : A");
+d2("Leading TRUE : B");
+d2("Leading TRUE : C");
+/* 
 // Debounce: leading: true, trailing: true
 const d3 = debounce(log, 1000, {
   leading: true,
@@ -33,7 +33,7 @@ const d3 = debounce(log, 1000, {
 
 d3("A");
 d3("B");
-d3("C"); */
+d3("C");
 
 // Debounce: cancel()
 const d4 = debounce(log, 1000);
@@ -42,7 +42,7 @@ d4("A");
 d4("B");
 
 d4.cancel();
-/* 
+
 // Debounce: flush()
 const d5 = debounce(log, 1000);
 
@@ -98,6 +98,4 @@ t5("B");
 
 setTimeout(() => {
   t5.flush();
-}, 300);
-
- */
+}, 300); */
