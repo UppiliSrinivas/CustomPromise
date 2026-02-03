@@ -7,13 +7,13 @@ type DebounceOptions = {
 
 type Tail<T extends readonly unknown[]> = T extends readonly [
   unknown,
-  ...infer R
+  ...infer R,
 ]
   ? R
   : never;
 
 type Debounced<
-  T extends (signal: AbortSignal, ...args: readonly unknown[]) => unknown
+  T extends (signal: AbortSignal, ...args: readonly unknown[]) => unknown,
 > = {
   (...args: Tail<Parameters<T>>): CustomPromise<Awaited<ReturnType<T>>>;
   cancel(): void;
@@ -24,11 +24,11 @@ const debounce = <
   T extends (
     signal: AbortSignal,
     ...args: readonly any[]
-  ) => Awaited<ReturnType<T>>
+  ) => Awaited<ReturnType<T>>,
 >(
   fn: T,
   delay: number,
-  options: DebounceOptions = {}
+  options: DebounceOptions = {},
 ): Debounced<T> => {
   let timer: ReturnType<typeof setTimeout> | null = null;
   let lastArgs: Tail<Parameters<T>> | null = null;
@@ -60,8 +60,10 @@ const debounce = <
 
     if (shouldCallLeading) {
       lastTask = invoke()!;
+      timer = setTimeout(() => (timer = null), delay);
       return lastTask;
-    } else lastTask?.cancel();
+    } 
+    else lastTask?.cancel();
 
     let innerTask: CustomPromise<any> | null = null;
 
@@ -82,7 +84,7 @@ const debounce = <
           innerTask?.cancel();
           clearTimeout(timer!);
         });
-      }
+      },
     );
     lastTask = task;
     return task;
