@@ -65,7 +65,7 @@ const debounce = <
     } 
     else lastTask?.cancel();
 
-    let innerTask: CustomPromise<any> | null = null;
+    let innerTask: CustomPromise<Awaited<ReturnType<T>>> | null = null;
 
     const task = new CustomPromise<Awaited<ReturnType<T>>>(
       (resolve, reject, onCancel) => {
